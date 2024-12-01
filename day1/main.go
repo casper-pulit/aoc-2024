@@ -10,6 +10,20 @@ import (
 	"strconv"
 )
 
+func UniqueVals(slice []int) []int {
+	uniqueMap := make(map[int]bool)
+	var uniqueSlice []int
+
+	for _, val := range slice {
+		if !uniqueMap[val] { // Check if the value is not already in the map
+			uniqueMap[val] = true
+			uniqueSlice = append(uniqueSlice, val) // Add to the result slice
+		}
+	}
+
+	return uniqueSlice
+}
+
 func main() {
 
 	var left []int
@@ -51,4 +65,22 @@ func main() {
 	}
 
 	fmt.Println(int(dist))
+
+	u_left := UniqueVals(left)
+	sim_score := 0
+	for i := range u_left {
+		count := 0
+		for ii := range right {
+			if u_left[i] == right[ii] {
+				count += 1
+			}
+		}
+		sim_score += u_left[i] * count
+		if count != 0 {
+			fmt.Println(u_left[i], count, u_left[i]*count)
+		}
+	}
+
+	fmt.Println(sim_score)
+
 }
