@@ -54,18 +54,15 @@ func main() {
 	sort.Ints(left)
 	sort.Ints(right)
 
-	fmt.Println(left[0:20])
-	fmt.Println(right[0:20])
-
 	dist := float64(0)
 	for i := 0; i < len(left); i++ {
 
 		diff := right[i] - left[i]
 		dist += math.Abs(float64(diff))
 	}
-
+	fmt.Println("Distance between the two lists is:")
 	fmt.Println(int(dist))
-
+	// doesn't actually do anything because all values in left list are already unique
 	u_left := UniqueVals(left)
 	sim_score := 0
 	for i := range u_left {
@@ -76,11 +73,9 @@ func main() {
 			}
 		}
 		sim_score += u_left[i] * count
-		if count != 0 {
-			fmt.Println(u_left[i], count, u_left[i]*count)
-		}
-	}
 
+	}
+	fmt.Println("Similarity score between the two lists is:")
 	fmt.Println(sim_score)
 
 }
